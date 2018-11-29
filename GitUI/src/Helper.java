@@ -10,7 +10,6 @@
  */
 public class Helper {
     static String path = "";
-    static String clonePath = "";
     static String repo = "";
     
     public void setRepo(String repo){
@@ -19,14 +18,6 @@ public class Helper {
     
     public String getRepo(){
         return this.repo;
-    }
-    
-    public void setClonePath(String clonePath){
-        this.clonePath = clonePath;
-    }
-    
-    public String getClonePath(){
-        return this.clonePath;
     }
     
     public void setPath(String path){
