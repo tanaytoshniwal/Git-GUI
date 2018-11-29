@@ -3,7 +3,7 @@
 
 ## Usage
 
-Navigate to **GitUI\dist** Directory and type the following commands to execute:
+Navigate to **JAR** Directory and type the following commands to execute:
 
 ```java
   $ java -jar GitUI.jar
