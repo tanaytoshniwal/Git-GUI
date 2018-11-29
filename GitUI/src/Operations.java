@@ -52,6 +52,11 @@ public class Operations extends javax.swing.JFrame {
 
         jButton2.setText("Commit");
         jButton2.setPreferredSize(new java.awt.Dimension(100, 100));
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         jButton3.setText("Push");
         jButton3.setPreferredSize(new java.awt.Dimension(100, 100));
@@ -109,7 +114,7 @@ public class Operations extends javax.swing.JFrame {
             BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
             while(true){
                 String line = r.readLine();
-                status = status + line;
+                status = status + line + "\n";
                 if(line == null) break;
             }
             JOptionPane.showMessageDialog(this, status);
@@ -118,6 +123,24 @@ public class Operations extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Something's wrong");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        String commit_message = JOptionPane.showInputDialog(this, "Input Commit Message!");
+        try{
+            ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "cd "+Helper.repo+" && git commit -m \""+commit_message+"\"");
+            builder.redirectErrorStream(true);
+            Process p = builder.start();
+            BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            while(true){
+                String line = r.readLine();
+                System.out.println(line);
+                if(line == null) break;
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Something's wrong");
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
