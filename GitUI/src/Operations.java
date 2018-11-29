@@ -60,6 +60,11 @@ public class Operations extends javax.swing.JFrame {
 
         jButton3.setText("Push");
         jButton3.setPreferredSize(new java.awt.Dimension(100, 100));
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
 
         jButton4.setText("Pull");
         jButton4.setPreferredSize(new java.awt.Dimension(100, 100));
@@ -141,6 +146,25 @@ public class Operations extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Something's wrong");
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        String remote = JOptionPane.showInputDialog(this, "Input Remote");
+        String branch = JOptionPane.showInputDialog(this, "Input branch");
+        try{
+            ProcessBuilder builder = new ProcessBuilder("cmd.exe", "/c", "cd "+Helper.repo+" && git push "+remote+" "+branch);
+            builder.redirectErrorStream(true);
+            Process p = builder.start();
+            BufferedReader r = new BufferedReader(new InputStreamReader(p.getInputStream()));
+            while(true){
+                String line = r.readLine();
+                System.out.println(line);
+                if(line == null) break;
+            }
+        }
+        catch(Exception e){
+            JOptionPane.showMessageDialog(this, "Something's wrong");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
